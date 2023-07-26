@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="rock-paper-scissors.css" />
+  </head>
+  <body>
+    <div class="default-parent" id="final">
+      <div class="default">
+        <p id="finalResult"></p>
+        <a href="index.html"> <button>Play Again</button></a>
+      </div>
+    </div>
+
+    <header>
+      <h1>Rock Paper Scissors</h1>
+    </header>
+
+    <h2 class="result" id="result"></h2>
+
+    <h1>Choose your weapon</h1>
+
+    <section class="container">
+      <div class="card" onclick="getPlayerChoice('rock')">
+        <img
+          src="https://thenounproject.com/api/private/icons/147847/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0"
+          alt=""
+        />
+        <p>Rock</p>
+      </div>
+      <div class="card" onclick="getPlayerChoice('paper')">
+        <img
+          src="https://thenounproject.com/api/private/icons/147844/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0"
+          alt=""
+        />
+        <p>Paper</p>
+      </div>
+      <div class="card" onclick="getPlayerChoice('scissors')">
+        <img
+          src="https://thenounproject.com/api/private/icons/147845/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0"
+          alt=""
+        />
+        <p>Scissors</p>
+      </div>
+    </section>
+    <div class="score">
+      <p>Player:<span id="playerWon"></span></p>
+      <p>Computer:<span id="computerWon"></span></p>
+    </div>
+
+    <script>
+      let playerScore = 0;
+      let computerScore = 0;
+      let options = ["rock", "paper", "scissors"];
+      const getComputerChoice = () => {
+        random = Math.floor(Math.random() * options.length);
+        return options[random];
+      };
+      function getPlayerChoice(playerSelection) {
+        let computerSelection = getComputerChoice();
+        game(playerSelection, computerSelection);
+      }
+      function game(playerSelection, computerSelection) {
+        let result;
+        result = playRound(playerSelection, computerSelection);
+        document.getElementById("result").innerHTML = result;
+
+        if (checkWinner(playerSelection, computerSelection) == "player") {
+          playerScore++;
+          document.getElementById("playerWon").innerHTML = playerScore;
+        } else if (
+          checkWinner(playerSelection, computerSelection) == "computer"
+        ) {
+          computerScore++;
+          document.getElementById("computerWon").innerHTML = computerScore;
+        }
+        if (playerScore == 5) {
+          const showResult = document.getElementById("final");
+          showResult.classList.add("show");
+
+          document.getElementById("finalResult").innerHTML =
+            "CONGRATS !!! U WON !!";
+        } else if (computerScore == 5) {
+          const showResult = document.getElementById("final");
+          showResult.classList.add("show");
+
+          document.getElementById("finalResult").innerHTML = "U LOST 🙃";
+        }
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        const result = checkWinner(playerSelection, computerSelection);
+        if (result == "tie") {
+          return "its a tie";
+        } else if (result == "player") {
+          return `You win ! ${playerSelection} beats ${computerSelection}`;
+        } else if (result == "computer") {
+          return `You loose ! ${computerSelection} beats ${playerSelection}`;
+        }
+      }
+
+      function checkWinner(playerSelection, computerSelection) {
+        if (playerSelection == computerSelection) {
+          return "tie";
+        } else if (
+          (playerSelection == "rock" && computerSelection == "scissors") ||
+          (playerSelection == "scissors" && computerSelection == "paper") ||
+          (playerSelection == "paper" && computerSelection == "rock")
+        ) {
+          return "player";
+        } else {
+          return "computer";
+        }
+      }
+      // function game() {
+      //   let playerScore = 0;
+      //   let computerScore = 0;
+      //   console.log("Welcome!!");
+      //   for (let index = 0; index < 5; index++) {
+      //     playerSelection = getPlayerChoice();
+      //     computerSelection = getComputerChoice();
+      //     console.log(playRound(playerSelection, computerSelection));
+      //     if (checkWinner(playerSelection, computerSelection) == "player") {
+      //       playerScore++;
+      //     } else if (
+      //       checkWinner(playerSelection, computerSelection) == "computer"
+      //     ) {
+      //       computerScore++;
+      //     }
+      //   }
+      //   if (playerScore > computerScore) {
+      //     console.log("player is the winner");
+      //   } else if (computerScore > playerScore) {
+      //     console.log("computer is the winner");
+      //   } else {
+      //     console.log("stand down. Its a draw!!");
+      //   }
+      // }
+
+      // game();
+    </script>
+  </body>
+</html>
