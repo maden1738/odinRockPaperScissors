@@ -1,0 +1,125 @@
+* {
+  --text: #ffffff;
+  --background: #000000;
+  --primary: #1e9674;
+  --secondary: #7dbb99;
+  --accent: #1710e0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+header h1 {
+  text-align: center;
+  font-size: 5em;
+  background-color: var(--primary);
+  padding: 4rem;
+}
+
+body h1 {
+  margin-top: 3rem;
+  text-align: center;
+}
+.container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-auto-rows: 260px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+.card {
+  border: 1px solid white;
+  background-color: var(--secondary);
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card img {
+  width: 80%;
+  height: 70%;
+}
+
+.card p {
+  font-size: 2rem;
+  color: #000000;
+}
+
+.card :hover {
+  transform: scale(1.5);
+}
+
+.score {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.score p {
+  font-size: 1.5rem;
+}
+
+.result {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  color: yellow;
+  font-style: italic;
+}
+
+/* .finalResult {
+  height: 100%;
+  width: 100%;
+  
+} */
+.default-parent {
+  display: none;
+}
+
+.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0px;
+  border: 1px solid white;
+  background-color: grey;
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+}
+
+.default {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.default button {
+  margin-top: 2rem;
+  width: 170px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: black;
+  color: var(--primary);
+  border: 0px;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.default p {
+  color: black;
+  font-size: 4rem;
+}
